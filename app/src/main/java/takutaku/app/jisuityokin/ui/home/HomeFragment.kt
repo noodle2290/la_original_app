@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun intentMethod(activity: Activity, vararg ids:Int){
+    private fun intentMethod(activity: Activity, vararg ids:Int){
         val activityIntent = Intent(requireContext(), activity::class.java)
         for(i in ids) {
             activityIntent.putExtra(Constants.SELECTED_MEMO_ID, i)

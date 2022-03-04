@@ -17,29 +17,30 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater).apply { setContentView(this.root) }
 
-        memoDao.deleteAll()
         val id:Int = intent.getIntExtra(Constants.SELECTED_MEMO_ID,0)
         val memo = memoDao.getMemo(id)
 
         if(id == 0) {
             binding.editSaveButton.setOnClickListener {
-                val chip:Chip = findViewById(binding.chips.checkedChipId!!)
-                val memo = Memo(id, binding.dateEditText.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
-                memoDao.insert(memo)
-                Intent(MainActivity())
+                //idはInt型、ここではchipグループで選択されているchipのidを取得して、それをviewに変換している
+                val chip:Chip = findViewById(binding.chips.checkedChipId)
+                val newMemo = Memo(id, binding.dateEditText.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
+                memoDao.insert(newMemo)
+                intentMethod(MainActivity())
             }
         }else{
             binding.dateEditText.setText(memo.date)
             binding.contentEditText.setText(memo.content)
             binding.editSaveButton.setOnClickListener {
-                val memo = Memo(id, binding.dateEditText.text.toString(),binding.chips.checkedChipId.toString(), binding.contentEditText.text.toString())
-                memoDao.update(memo)
-                Intent(MainActivity(),memo.id)
+                val chip:Chip = findViewById(binding.chips.checkedChipId)
+                val afterMemo = Memo(id, binding.dateEditText.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
+                memoDao.update(afterMemo)
+                intentMethod(MainActivity(),afterMemo.id)
             }
         }
 
     }
-    fun Intent(activity: Activity, vararg ids:Int){
+    private fun intentMethod(activity: Activity, vararg ids:Int){
         val activityIntent = android.content.Intent(applicationContext, activity::class.java)
         for(i in ids) {
             activityIntent.putExtra(Constants.SELECTED_MEMO_ID, i)
