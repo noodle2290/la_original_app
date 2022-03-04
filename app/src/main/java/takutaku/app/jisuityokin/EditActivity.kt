@@ -4,6 +4,8 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.google.android.material.chip.Chip
 import takutaku.app.jisuityokin.databinding.ActivityEditBinding
 
@@ -20,25 +22,28 @@ class EditActivity : AppCompatActivity() {
         val id:Int = intent.getIntExtra(Constants.SELECTED_MEMO_ID,0)
         val memo = memoDao.getMemo(id)
 
-        if(id == 0) {
-            binding.editSaveButton.setOnClickListener {
-                //idはInt型、ここではchipグループで選択されているchipのidを取得して、それをviewに変換している
-                val chip:Chip = findViewById(binding.chips.checkedChipId)
-                val newMemo = Memo(id, binding.dateEditText.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
-                memoDao.insert(newMemo)
-                intentMethod(MainActivity())
+        when(id){
+            0 -> {
+                binding.editDeleteButton.isInvisible = true
+                binding.editSaveButton.setOnClickListener {
+                    memoDao.insert(postData(id))
+                    intentMethod(MainActivity())
+                }
             }
-        }else{
-            binding.dateEditText.setText(memo.date)
-            binding.contentEditText.setText(memo.content)
-            binding.editSaveButton.setOnClickListener {
-                val chip:Chip = findViewById(binding.chips.checkedChipId)
-                val afterMemo = Memo(id, binding.dateEditText.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
-                memoDao.update(afterMemo)
-                intentMethod(MainActivity(),afterMemo.id)
+            else->{
+                binding.editDeleteButton.isVisible = true
+                binding.dateEditText.setText(memo.date)
+                binding.contentEditText.setText(memo.content)
+                binding.editSaveButton.setOnClickListener {
+                    memoDao.update(postData(id))
+                    intentMethod(MainActivity(),postData(id).id)
+                }
+                binding.editDeleteButton.setOnClickListener {
+                    memoDao.delete(memo)
+                    intentMethod(MainActivity())
+                }
             }
         }
-
     }
     private fun intentMethod(activity: Activity, vararg ids:Int){
         val activityIntent = android.content.Intent(applicationContext, activity::class.java)
@@ -46,5 +51,10 @@ class EditActivity : AppCompatActivity() {
             activityIntent.putExtra(Constants.SELECTED_MEMO_ID, i)
         }
         startActivity(activityIntent)
+    }
+
+    private fun postData(id:Int):Memo{
+        val chip:Chip = findViewById(binding.chips.checkedChipId)
+        return Memo(id, binding.dateEditText.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
     }
 }
