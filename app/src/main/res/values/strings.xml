@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JisuiTyokin</string>
+    <string name="app_name">自炊貯金</string>
     <string name="title_home">ホーム</string>
     <string name="title_list">自炊リスト</string>
     <string name="title_recommend">おすすめメニュー</string>
