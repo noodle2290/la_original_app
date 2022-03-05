@@ -17,8 +17,9 @@ class SettingActivity : AppCompatActivity() {
 
 //        toolbarをActionBarとして扱う
         setSupportActionBar(binding.settingToolbar)
-
-        //        ActionBarに戻るボタンを実装
+//        ActionBarの文字を削除
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+//        ActionBarに戻るボタンを実装
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back_24dp)
     }
