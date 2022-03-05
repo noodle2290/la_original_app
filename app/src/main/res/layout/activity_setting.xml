@@ -82,7 +82,7 @@
         app:passwordToggleEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/date_edit_text"
+            android:id="@+id/goal_money_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="目標の金額を入力"
@@ -94,7 +94,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/edit_save_button2"
+        android:id="@+id/setting_save_button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
