@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JisuiTyokin">
         <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditActivity"
             android:exported="false" />
         <activity
