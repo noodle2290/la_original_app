@@ -1,8 +1,11 @@
 package takutaku.app.jisuityokin.ui.home
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,18 +21,28 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    private lateinit var dataStore: SharedPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         homeViewModel.text.observe(viewLifecycleOwner) {
         }
+        dataStore = this.requireActivity().getSharedPreferences("DataStore", Context.MODE_PRIVATE)
+        val goal = dataStore.getInt(Constants.GOAL_MONEY,0)
+        val count = dataStore.getInt(Constants.COUNT_NUMBER,0)
+        val save = dataStore.getInt(Constants.SAVE_MONEY,0)
+        binding.timesNumberText.text = count.toString() + "回自炊しました"
+        binding.sumNumberText.text = (count * save).toString() + "円貯金"
+        binding.goalText.text = dataStore.getString(Constants.GOAL_TEXT, " ") + "まで"
+        binding.goalNumberText.text = (goal - count * save).toString() + "円"
         binding.toaddButton.setOnClickListener {
             intentMethod(EditActivity())
         }
