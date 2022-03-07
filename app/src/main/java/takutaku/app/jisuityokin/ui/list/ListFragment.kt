@@ -50,6 +50,10 @@ class ListFragment : Fragment() {
 
         dashboardViewModel.text.observe(viewLifecycleOwner) {
         }
+
+        binding.toaddButton2.setOnClickListener{
+            intentMethod(EditActivity())
+        }
         return root
     }
 
