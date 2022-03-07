@@ -39,10 +39,11 @@ class HomeFragment : Fragment() {
         val goal = dataStore.getInt(Constants.GOAL_MONEY,0)
         val count = dataStore.getInt(Constants.COUNT_NUMBER,0)
         val save = dataStore.getInt(Constants.SAVE_MONEY,0)
+
         binding.timesNumberText.text = count.toString() + "回自炊しました"
         binding.sumNumberText.text = (count * save).toString() + "円貯金"
         binding.goalText.text = dataStore.getString(Constants.GOAL_TEXT, " ") + "まで"
-        binding.goalNumberText.text = (goal - count * save).toString() + "円"
+        binding.goalNumberText.text = Math.ceil(((goal - count * save) / save.toDouble())).toInt().toString() + "回自炊する"
         binding.toaddButton.setOnClickListener {
             intentMethod(EditActivity())
         }
