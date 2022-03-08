@@ -1,9 +1,15 @@
 package takutaku.app.jisuityokin
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
+import androidx.room.*
 
-@Database(entities = [Memo::class], version = 1)
-abstract class AppDatabase : RoomDatabase() {
+@Database(
+    version = 2,
+    entities = [Memo::class],
+    autoMigrations = [
+        AutoMigration (from = 1, to = 2)
+    ],
+    exportSchema = true
+)abstract class AppDatabase : RoomDatabase() {
     abstract fun memoDao(): MemoDao
+    @DeleteColumn(tableName = "Memo", columnName = "date")
 }

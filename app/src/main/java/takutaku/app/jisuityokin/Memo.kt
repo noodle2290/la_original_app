@@ -7,7 +7,9 @@ import java.util.*
 @Entity(tableName = "memos")
 data class Memo(
     @PrimaryKey(autoGenerate = true)  val id: Int,
-    val date: String?,
-    val check: String?,
+    val year: Int?,
+    val month: Int?,
+    val day: Int?,
+    val check: Int?,
     val content: String?,
     )

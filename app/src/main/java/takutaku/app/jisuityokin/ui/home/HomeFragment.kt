@@ -28,13 +28,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        homeViewModel.text.observe(viewLifecycleOwner) {
-        }
         dataStore = this.requireActivity().getSharedPreferences("DataStore", Context.MODE_PRIVATE)
         val goal = dataStore.getInt(Constants.GOAL_MONEY,0)
         val count = dataStore.getInt(Constants.COUNT_NUMBER,0)

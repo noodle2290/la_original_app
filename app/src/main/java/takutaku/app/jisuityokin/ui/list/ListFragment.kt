@@ -30,9 +30,6 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(ListViewModel::class.java)
-
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -47,9 +44,6 @@ class ListFragment : Fragment() {
         binding.recyclerView.adapter = memoAdapter
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-        }
 
         binding.toaddButton2.setOnClickListener{
             intentMethod(EditActivity())
