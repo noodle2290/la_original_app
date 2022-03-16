@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_button"
         app:selectionRequired="true"
@@ -42,8 +43,8 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:fontFamily="@font/mainfont"
-            android:text="自炊成功"
-            android:textSize="34sp" />
+            android:text="朝食"
+            android:textSize="24sp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_2"
@@ -51,8 +52,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mainfont"
-            android:text="自炊失敗"
-            android:textSize="34sp" />
+            android:text="昼食"
+            android:textSize="24sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_3"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mainfont"
+            android:text="夕食"
+            android:textSize="24sp" />
 
 
     </com.google.android.material.chip.ChipGroup>
