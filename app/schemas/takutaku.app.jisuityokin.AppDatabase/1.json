@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "fc845cb8f07c3da7e51a16d604cd3fb6",
+    "identityHash": "a8c38eed4dbed6d3d8a84cb4c90ed3f6",
     "entities": [
       {
         "tableName": "memos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `year` INTEGER, `month` INTEGER, `day` INTEGER, `check` INTEGER, `content` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `check` TEXT, `content` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,27 +15,15 @@
             "notNull": true
           },
           {
-            "fieldPath": "year",
-            "columnName": "year",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "month",
-            "columnName": "month",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "day",
-            "columnName": "day",
-            "affinity": "INTEGER",
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
             "fieldPath": "check",
             "columnName": "check",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -58,7 +46,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fc845cb8f07c3da7e51a16d604cd3fb6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a8c38eed4dbed6d3d8a84cb4c90ed3f6')"
     ]
   }
 }
