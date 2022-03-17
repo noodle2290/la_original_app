@@ -34,7 +34,7 @@ class ListFragment : Fragment() {
         val root: View = binding.root
 
         memoAdapter = MemoAdapter(object : OnItemClickListener {
-            // 詳細画面に遷移
+            // 編集画面に遷移
             override fun onItemClick(memo: Memo) {
                 intentMethod(EditActivity(),memo.id)
             }

@@ -36,6 +36,7 @@ class EditActivity : AppCompatActivity() {
         val memo = memoDao.getMemo(id)
         val count = dataStore.getInt(Constants.COUNT_NUMBER,0)
 
+        //カレンダーフラグメントを開く
         binding.dateButton.setOnClickListener{
             val newFragment = CalendarFragment()
             newFragment.show(supportFragmentManager, "datePicker")
@@ -48,27 +49,24 @@ class EditActivity : AppCompatActivity() {
                 dateSet()
                 binding.editSaveButton.setOnClickListener {
                     plusCount(count)
-//                    memoDao.insert(postData(id))
+                    memoDao.insert(postData(id))
                     intentMethod(MainActivity())
                 }
             }
             else->{
                 //編集処理
                 binding.editDeleteButton.isVisible = true
+                changeDate(memo)
                 dateSet()
                 binding.contentEditText.setText(memo.content)
 
                 binding.editSaveButton.setOnClickListener {
-
-//                    memoDao.update(postData(id))
-//                    intentMethod(MainActivity(),postData(id).id)
+                    memoDao.update(postData(id))
+                    intentMethod(MainActivity())
                 }
 
                 binding.editDeleteButton.setOnClickListener {
-                        val editor = dataStore.edit()
-                        editor.putInt(Constants.COUNT_NUMBER, count - 1)
-                        editor.apply()
-
+                    minusCount(count)
                     memoDao.delete(memo)
                     intentMethod(MainActivity())
                 }
@@ -76,43 +74,39 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    private fun intentMethod(activity: Activity, vararg ids:Int){
+    private fun intentMethod(activity: Activity){
         val activityIntent = android.content.Intent(applicationContext, activity::class.java)
-        for(i in ids) {
-            activityIntent.putExtra(Constants.SELECTED_MEMO_ID, i)
-        }
         startActivity(activityIntent)
     }
 
+    //DateButtonの文字を変える
     private fun dateSet(){
         val year = viewModel.year
-        Log.d("month" ,viewModel.month.toString())
         val month = viewModel.month + 1
         val day = viewModel.day
         binding.dateButton.text = "${year}年${month}月${day}日"
     }
 
-//    private fun postData(id:Int):Memo{
-//        val chip:Chip = findViewById(binding.chips.checkedChipId)
-//        return Memo(id, binding.dateButton.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
-//    }
+    //ViewModelに日付を代入
+    private fun changeDate(memo:Memo){
+        viewModel.year = memo.year!!
+        viewModel.month = memo.month!!
+        viewModel.day = memo.day!!
+    }
+
+    private fun postData(id:Int):Memo{
+        return Memo(id, viewModel.year,viewModel.month, viewModel.day,findViewById<Chip>(binding.chips.checkedChipId).text.toString(),binding.contentEditText.text.toString())
+    }
 
     private fun plusCount(count:Int){
-        val chip:Chip = findViewById(binding.chips.checkedChipId)
-        if (chip == binding.chip1){
-            val editor = dataStore.edit()
-            editor.putInt(Constants.COUNT_NUMBER, count + 1)
-            editor.apply()
-        }
+        val editor = dataStore.edit()
+        editor.putInt(Constants.COUNT_NUMBER, count + 1)
+        editor.apply()
     }
 
     private fun minusCount(count:Int){
-        val chip:Chip = findViewById(binding.chips.checkedChipId)
-        if(chip == binding.chip2) {
-            val editor = dataStore.edit()
-            editor.putInt(Constants.COUNT_NUMBER, count - 1)
-            editor.apply()
-        }
-
+        val editor = dataStore.edit()
+        editor.putInt(Constants.COUNT_NUMBER, count - 1)
+        editor.apply()
     }
 }

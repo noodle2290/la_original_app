@@ -15,7 +15,7 @@ class MemoApplication : Application() {
         db = Room
             .databaseBuilder(applicationContext, AppDatabase::class.java, "memo_db")
             .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration() //既存のデータが失われるのを許容する
             .build()
     }
 }
