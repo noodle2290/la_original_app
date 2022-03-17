@@ -2,6 +2,8 @@ package takutaku.app.jisuityokin
 
 import android.app.Application
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 class MemoApplication : Application() {
     companion object {
@@ -13,6 +15,7 @@ class MemoApplication : Application() {
         db = Room
             .databaseBuilder(applicationContext, AppDatabase::class.java, "memo_db")
             .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
             .build()
     }
 }

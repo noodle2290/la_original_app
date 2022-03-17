@@ -10,6 +10,6 @@ data class Memo(
     val year: Int?,
     val month: Int?,
     val day: Int?,
-    val check: Int?,
+    val check: String?,
     val content: String?,
     )

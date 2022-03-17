@@ -48,7 +48,7 @@ class EditActivity : AppCompatActivity() {
                 dateSet()
                 binding.editSaveButton.setOnClickListener {
                     plusCount(count)
-                    memoDao.insert(postData(id))
+//                    memoDao.insert(postData(id))
                     intentMethod(MainActivity())
                 }
             }
@@ -59,24 +59,16 @@ class EditActivity : AppCompatActivity() {
                 binding.contentEditText.setText(memo.content)
 
                 binding.editSaveButton.setOnClickListener {
-                    when(memo.check){
-                        "自炊成功" ->{
-                            minusCount(count)
-                        }
-                        "自炊失敗" ->{
-                            plusCount(count)
-                        }
-                    }
-                    memoDao.update(postData(id))
-                    intentMethod(MainActivity(),postData(id).id)
+
+//                    memoDao.update(postData(id))
+//                    intentMethod(MainActivity(),postData(id).id)
                 }
 
                 binding.editDeleteButton.setOnClickListener {
-                    if(memo.check == "自炊成功") {
                         val editor = dataStore.edit()
                         editor.putInt(Constants.COUNT_NUMBER, count - 1)
                         editor.apply()
-                    }
+
                     memoDao.delete(memo)
                     intentMethod(MainActivity())
                 }
@@ -100,10 +92,10 @@ class EditActivity : AppCompatActivity() {
         binding.dateButton.text = "${year}年${month}月${day}日"
     }
 
-    private fun postData(id:Int):Memo{
-        val chip:Chip = findViewById(binding.chips.checkedChipId)
-        return Memo(id, binding.dateButton.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
-    }
+//    private fun postData(id:Int):Memo{
+//        val chip:Chip = findViewById(binding.chips.checkedChipId)
+//        return Memo(id, binding.dateButton.text.toString(),chip.text.toString(), binding.contentEditText.text.toString())
+//    }
 
     private fun plusCount(count:Int){
         val chip:Chip = findViewById(binding.chips.checkedChipId)

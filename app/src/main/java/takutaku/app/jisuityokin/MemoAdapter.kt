@@ -25,8 +25,8 @@ class MemoViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(memo: Memo) {
-        binding.dateTextView.text = memo.date
-        binding.checkTextView.text = memo.check
+//        binding.dateTextView.text = memo.date
+//        binding.checkTextView.text = memo.check
         binding.contentTextView.text = memo.content
 
         binding.container.setOnClickListener {
