@@ -18,6 +18,7 @@ class CalendarFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
             viewModel = ViewModelProvider(this)[CalendarViewModel::class.java]
         }
 
+        //カレンダーフラグメントでの初期日付を設定
         return DatePickerDialog(
             this.context as Context,
             this,
@@ -26,6 +27,7 @@ class CalendarFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
             viewModel.day)
     }
 
+    //日付を設定した後の処理
     override fun onDateSet(view: android.widget.DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int) {
         viewModel.year = year
         viewModel.month = monthOfYear
