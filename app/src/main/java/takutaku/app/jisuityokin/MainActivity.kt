@@ -11,11 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import takutaku.app.jisuityokin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

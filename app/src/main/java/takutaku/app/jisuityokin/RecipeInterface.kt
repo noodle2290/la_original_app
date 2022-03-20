@@ -10,5 +10,5 @@ interface RecipeInterface {
     suspend fun getRecipe(
         @Query("applicationId") id: Long,
         @Query("format") format:String
-    ):Recipe
+    ):Result
 }
