@@ -1,5 +1,7 @@
 package takutaku.app.jisuityokin.ui.notifications
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +45,7 @@ class NotificationsFragment : Fragment() {
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val client = builderHttpClient() // OkHttpClient に logging の設定を追加
         val random = Random()
+        val browserIntent = Intent(Intent.ACTION_VIEW)
 
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://app.rakuten.co.jp/")
@@ -60,10 +63,19 @@ class NotificationsFragment : Fragment() {
             val recipeResult = it.result[random.nextInt(size)]
 
             binding.recipeTitleText.text = recipeResult.recipeTitle
+            binding.timeTextView.text = recipeResult.recipeIndication
+            binding.moneyTextView.text = recipeResult.recipeCost
+            binding.recipeContentTextView.text = recipeResult.recipeDescription
             binding.recipeImage.load(recipeResult.foodImageUrl)
+            browserIntent.data = Uri.parse(recipeResult.recipeUrl)
         }.onFailure {
             Toast.makeText(context,"失敗", Toast.LENGTH_SHORT).show()
         }
+
+        binding.recipeIntentButton.setOnClickListener {
+            startActivity(browserIntent)
+        }
+
         return root
     }
 
