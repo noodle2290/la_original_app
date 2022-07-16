@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -12,10 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/main_color"
         android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_add_24dp"
+        app:backgroundTint="@color/main_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="#FFFFFF" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/times_card"
@@ -24,8 +28,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/sub_color"
-        android:backgroundTint="@color/sub_color"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +46,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/mainfont"
                 android:text="これまでの自炊数"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,8 +58,9 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="0"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 android:textSize="48sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/times_top_text" />
@@ -66,9 +70,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="累計"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/times_number_text"
                 app:layout_constraintEnd_toStartOf="@+id/times_number_text" />
 
@@ -77,9 +82,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="回"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/times_number_text"
                 app:layout_constraintStart_toEndOf="@+id/times_number_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,7 +99,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/sub_color"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,9 +114,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="円"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/sum_number_text"
                 app:layout_constraintStart_toEndOf="@+id/sum_number_text" />
 
@@ -121,8 +128,9 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="0"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 android:textSize="48sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sum_text" />
@@ -135,7 +143,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/mainfont"
                 android:text="現在の貯金額"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -149,7 +157,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/sub_color"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,8 +174,9 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="0"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 android:textSize="48sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/goal_text" />
@@ -177,9 +186,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="あと"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_number_text"
                 app:layout_constraintEnd_toStartOf="@+id/goal_number_text" />
 
@@ -188,9 +198,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/mainfont"
                 android:text="回自炊する"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/goal_number_text"
                 app:layout_constraintStart_toEndOf="@+id/goal_number_text" />
 
@@ -202,7 +213,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/mainfont"
                 android:text="目標まで"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

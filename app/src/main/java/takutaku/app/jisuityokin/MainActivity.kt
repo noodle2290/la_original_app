@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val arg = arrayOf(arrayOf(true,false),arrayOf(true,false))
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
